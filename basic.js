@@ -1,16 +1,19 @@
- var jpdbBaseURL="http://api.login2explore.com:5577";
+var jpdbBaseURL="http://api.login2explore.com:5577";
  var jpdbIML="/api/iml";
  var jpdbIRL="/api/irl";
- var empDBName= "Employee";
- var EmpRelationName="EMP-REL";
+ var empDBName= "STUDENT-TABLE";
+ var EmpRelationName="SCHOOL-DB";
  var connToken= "90938351|-31949271896140011|90952445";
 
  
- 
+
+  
+
  // Validating Form Data
 
  function validateAndGetFormData() {
     var empIdVar = $("#empId").val();
+
     if (empIdVar === "") {
         alert("Employee ID Required Value");
         $("#empId").focus();
@@ -68,7 +71,8 @@
 
 
 function saveRecNo2LS(jsonObj){
-    var lvData= JSON.parse(jsonObj.data).record;
+    var lvData= JSON.parse(jsonObj.data);
+    console.log(lvData);
     localStorage.setItem("recno", lvData.rec_no);
 }
 
@@ -79,22 +83,26 @@ function saveRecNo2LS(jsonObj){
 // fill Data
 
 function fillData(jsonObj){
+    console.log("filldata",jsonObj);
     saveRecNo2LS(jsonObj);
     var record=JSON.parse(jsonObj.data).record;
-    $("#empName").val(record.name);
-    $("#empSalary").val(record.salary);
-    $("#empHra").val(record.hra);
-    $("#empDa").val(record.da);
-    $("#empDeduction").val(record.deduction);
+    console.log("record",record);
+    $("#empName").val(record.empName);
+    $("#empSalary").val(record.empSalary);
+    $("#empHra").val(record.empHra);
+    $("#empDa").val(record.empDA);
+    $("#empDeduction").val(record.empDeduction);
 
 }
 
 
 
+
+
 function getEmpIdAsJson(){
-    var empId1=$("#empId").val();
+    var empId=$("#empId").val();
     var jsonStr={
-        id2:empId1
+        empId:empId
     };
     return JSON.stringify(jsonStr);
 }
@@ -107,14 +115,10 @@ function getEmpIdAsJson(){
 
 function getEmp(){
     var empIdJsonObj = getEmpIdAsJson();
-   //console.log(empIdJsonObj);
     var getRequest= createGET_BY_KEYRequest(connToken, empDBName, EmpRelationName, empIdJsonObj);
-    //console.log(getRequest);
     jQuery.ajaxSetup({ async: false });
-    var resJsonObj = executeCommandAtGivenBaseUrl(getRequest,jpdbBaseURL,jpdbIRL);
-    // console.log(resJsonObj);
+    var resJsonObj = executeCommandAtGivenBaseUrl(getRequest,jpdbBaseURL,jpdbIRL)
     jQuery.ajaxSetup({ async: true });
-   
     if(resJsonObj.status===400){
         $("#empSave").prop("disabled",false);
         $("#empReset").prop("disabled",false);
@@ -182,12 +186,13 @@ function saveEmployees() {
     // Using JPDB to create request
 
     var putReqStr = createPUTRequest(connToken,jsonStr, empDBName, EmpRelationName);
-    alert(putReqStr);
+    console.log(putReqStr);
     jQuery.ajaxSetup({ async: false });
 
     // Executing The request(through JPDB ).
 
     var resJsonObj = executeCommandAtGivenBaseUrl(putReqStr,jpdbBaseURL, jpdbIML);
+    console.log(resJsonObj);
     alert(JSON.stringify(resJsonObj));   
     jQuery.ajaxSetup({ async: true });
 
