@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Employee Form Details</title>
+    <title>Student Enrollment Form</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
@@ -15,46 +15,47 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
    
     
-
+    
 
 </head>
 
 <body>
     <div class="container">
-        <h2>Employee Form Details</h2>
-        <form id="EmpForm" method="post">
+        <h2> Student Enrollment Form</h2>
+        <form id="EmpForm" method="get">
             <div class="form-group">
-                <span><label for="empId">Employee ID:</label> <label id="stdIdMsg">
-                    </label></span>
-                <input type="text" class="form-control" name="empId" id="empId" placeholder="Enter Employee ID" onchange="getEmp()">
+                <span><label for="empId">Roll-No:</label>
+                    </span>
+                <input type="text" class="form-control" name="empId" id="empId" placeholder="Enter Roll-No" onchange="getEmp()">
             </div>
             <div class="form-group">
-                <label for="empName">Employee Name:</label>
-                <input type="text" class="form-control" id="empName" placeholder="Enter Employee Name" name="empName" required>
+                <label for="empName">Full-Name:</label>
+                <input type="text" class="form-control" id="empName" placeholder="Enter Full-Name" name="empName" required>
             </div>
             <div class="form-group">
-                <label for="empsalary">Salary:</label>
-                <input type="number" class="form-control" id="empSalary" placeholder="Enter  Salary"
+                <label for="empsalary">Class:</label>
+                <input type="number" class="form-control" id="empSalary" placeholder="Enter  Class"
                     name="empSalary">
             </div>
             <div class="form-group">
-                <label for="empHra">HRA:</label>
-                <input type="number" class="form-control" id="empHra" placeholder="Enter HRA Details" name="empHra">
+                <label for="empHra">Birth-Date:</label>
+                <input type="number" class="form-control" id="empHra" placeholder="Enter Birth-Date" name="empHra">
             </div>
             <div class="form-group">
-                <label for="empDa">DA:</label>
-                <input type="number" class="form-control" id="empDa" placeholder="Enter DA Details"
+                <label for="empDa">Address:</label>
+                <input type="number" class="form-control" id="empDa" placeholder="Enter  Address"
                     name="empDa">
             </div>
             <div class="form-group">
-                <label for="empDeduction">Deduction:</label>
-                <input type="number" class="form-control" id="empDeduction" placeholder="Enter Deduction amount"
+                <label for="empDeduction">Enrollment-Date:</label>
+                <input type="number" class="form-control" id="empDeduction" placeholder="Enter Enrollment-Date"
                     name="empDeduction">
             </div>
+       
             <div class="form-group text-center">
-                <button type="button" class="btn btn-success btn-lg" id="empSave"  onclick="saveEmployees();" disabled>Save</button>
-                <button type="button" class="btn btn-success btn-lg" id="empChange"  onclick="changeEmployeess();" disabled>Change</button>
-                <button type="button" class="btn btn-success btn-lg" id="empReset"  onclick="resetEmployees();" disabled>Reset</button>
+                <button type="button" class="btn btn-success btn-lg" id="empSave"  onclick="saveEmployees()" disabled>Save</button>
+                <button type="button" class="btn btn-success btn-lg" id="empChange"  onclick="changeEmployeess()" disabled>Change</button>
+                <button type="button" class="btn btn-success btn-lg" id="empReset"  onclick="resetEmployees()" disabled>Reset</button>
 
             </div>
             
@@ -62,7 +63,7 @@
     </div>
 
     <script src="http://login2explore.com/jpdb/resources/js/0.0.3/jpdb-commons.js"></script>
-    <script src="javascript/basic.js"></script>
+    <script src="./javascript/basic.js"></script>
     
 </body>
 
